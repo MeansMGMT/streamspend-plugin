@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "streamspend": {
+      "type": "http",
+      "url": "https://mcp.streamspend.net/mcp"
+    }
+  }
+}

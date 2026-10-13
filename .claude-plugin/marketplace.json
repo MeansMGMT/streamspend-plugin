@@ -1,0 +1,15 @@
+{
+  "name": "streamspend",
+  "owner": {
+    "name": "MeansMGMT",
+    "email": "contact@meansmgmt.com"
+  },
+  "description": "The official StreamSpend plugin by MeansMGMT for music ad campaign checks and catalog plans.",
+  "plugins": [
+    {
+      "name": "streamspend",
+      "source": "./",
+      "description": "Check music ad campaigns against StreamSpend benchmark ranges and plan which songs to push next."
+    }
+  ]
+}

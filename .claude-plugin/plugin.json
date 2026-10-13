@@ -1,0 +1,28 @@
+{
+  "name": "streamspend",
+  "displayName": "StreamSpend",
+  "version": "1.0.0",
+  "description": "Check music ad campaigns against StreamSpend benchmark ranges from past MeansMGMT campaigns, and plan which of an artist's songs to push next, right in the chat.",
+  "author": {
+    "name": "MeansMGMT",
+    "email": "contact@meansmgmt.com",
+    "url": "https://www.meansmgmt.com"
+  },
+  "homepage": "https://www.streamspend.net",
+  "repository": "https://github.com/MeansMGMT/streamspend-plugin",
+  "license": "MIT",
+  "keywords": [
+    "music",
+    "music marketing",
+    "ad campaigns",
+    "spotify",
+    "meta ads",
+    "benchmarks",
+    "streamspend"
+  ],
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://mcp.streamspend.net/",
+  "supportUrl": "https://www.meansmgmt.com/contact",
+  "privacyPolicyUrl": "https://mcp.streamspend.net/privacy",
+  "termsOfServiceUrl": "https://www.streamspend.net/terms"
+}
