@@ -2,9 +2,11 @@
 
 StreamSpend by MeansMGMT helps independent artists, labels and music marketers decide where ad money goes. This plugin connects Claude to the StreamSpend app and adds two skills that show Claude how to use it well.
 
-You can check how a music ad campaign did, for free and with no account. Share Meta, TikTok, YouTube or Google ad results for a song as a screenshot, an export or typed numbers. StreamSpend compares the price per result with ranges from past MeansMGMT campaigns. The card shows streams before, during and after the ads, streams per click, saves and one next step.
+You can check how a music ad campaign did, for free and with no account. Share the ad results for a song as a screenshot, an export or typed numbers. StreamSpend compares the price per result with ranges from past MeansMGMT campaigns. The card shows streams before, during and after the ads, streams per click, saves and one next step.
 
-With a free StreamSpend account, you can also ask which of an artist's songs to put money behind next. StreamSpend scores the whole Spotify catalog and shows top picks, sleepers and songs to skip, each with a campaign type, a country tier and one plain reason.
+The ranges cover Meta campaigns for streaming, pre-saves, playlist growth and ticket or merch sales. For social growth they cover Instagram follows from Meta ads, YouTube views and subscribers, and TikTok views. When a campaign has no matching range, the card says so instead of guessing.
+
+With a free StreamSpend account, you can also ask which of an artist's songs to put money behind next. StreamSpend scores songs from up to 25 of the artist's Spotify releases, recent ones first. The card shows top picks with a campaign type, a country tier and StreamSpend's reason, plus sleepers and songs to skip.
 
 ## Install
 
@@ -43,19 +45,23 @@ Free StreamSpend accounts get 4 plans per rolling 7 days. StreamSpend needs arti
 
 `next-push` tells Claude how to start a plan, when sign-in comes up and how to talk about the picks without overstating them.
 
-Both skills keep the same rules. Unknown numbers stay unknown and are never counted as zero. Countries and result types are never guessed from campaign names. Feature.fm clicks count clicks to every streaming service, not only Spotify. The checks describe what happened alongside the ads and never claim the ads caused it. Plan scores rank songs within one catalog and are not promised streams.
+In the campaign check, unknown numbers stay unknown and are never counted as zero. Countries and result types are never guessed from campaign names. Feature.fm clicks count clicks to every streaming service, not only Spotify. The check describes what happened alongside the ads and never claims the ads caused it.
+
+In plans, Claude repeats only the reasons StreamSpend gives. Plan scores rank songs within one catalog and are not promised streams.
 
 ## Data and privacy
 
 Every tool call goes to `mcp.streamspend.net`, the StreamSpend MCP server run by MeansMGMT.
 
-The campaign check tools read only. Claude sends only the numbers the check needs. That means campaign names, spend, currency, result counts and what they counted, dates, platform and countries. It also sends the genre, the song title and daily Spotify streams and saves if you share them. Export files you drop into the card are read inside the card, and only those numbers are sent. The server keeps nothing after it answers and never adds your numbers to its benchmarks.
+The campaign check tools read only. Claude sends the numbers the check needs: campaign names, spend, currency, result counts and what they counted, dates, platform and countries. It may also send the genre, the song title, the release date and other ad numbers such as impressions, clicks and follows. If you share them, it sends follower counts and daily Spotify streams, saves and listeners too.
 
-The plan tools need a free StreamSpend sign-in. You sign in on StreamSpend's own page, which uses StreamSpend's account system (Supabase), so the server never sees your password. Claude then sends your StreamSpend sign-in token with each plan request. The server checks the token and forwards it to `www.streamspend.net` with the artist name or link, an optional genre and market, or the plan ID. StreamSpend runs the plan with Spotify and other music data sources and saves the report to your account. A connector sign-in can only run plans and read your reports and plan count. It cannot change your account or settings.
+Export files you drop into the card are read inside the card, and only those numbers are sent. If Claude sends an export's text for the server to read instead, the server reads the same numbers from it. Either way, the server keeps nothing after it answers and never adds your numbers to its benchmarks.
+
+The plan tools need a free StreamSpend sign-in. You sign in on StreamSpend's own page, which uses StreamSpend's account system (Supabase), so the server never sees your password. Claude then sends your StreamSpend sign-in token with each plan request. The server checks the token and forwards it to `www.streamspend.net` with the artist name or link, an optional genre and market, or the plan ID. StreamSpend runs the plan with Spotify and other music data sources and saves the report to your account. A connector sign-in can only see your email address, run plans and read your reports and plan count. It cannot change your account or settings.
 
 Neither the plugin nor the server can reach your ad accounts or Spotify for Artists. When Claude reads an app you already connected, it does so through your own connection in Claude, and it never changes a campaign.
 
-To limit abuse, the server counts requests per network address, and plan requests per StreamSpend account, in memory for up to one minute. Railway, which hosts the server, may keep basic request records such as the time, network address and status code.
+To limit abuse, the server counts requests per network address, and plan requests per StreamSpend account, in memory only and in one-minute windows. Railway, which hosts the server, may keep basic request records such as the time, network address and status code.
 
 Read the full policies: [StreamSpend MCP privacy](https://mcp.streamspend.net/privacy) and [StreamSpend privacy](https://www.streamspend.net/privacy).
 
