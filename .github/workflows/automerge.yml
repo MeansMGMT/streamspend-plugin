@@ -1,0 +1,32 @@
+name: automerge
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  merge:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge the green PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          pr=$(gh pr list --repo "$REPO" --head "$BRANCH" --state open \
+            --json number,author,labels,isDraft,headRefOid,headRepositoryOwner --jq '.[0] // empty')
+          if [ -z "$pr" ]; then echo "No open PR for $BRANCH"; exit 0; fi
+          num=$(jq -r .number <<<"$pr")
+          ok=$(jq -r --arg sha "$SHA" '
+            .author.login == "MeansMGMT" and
+            .headRepositoryOwner.login == "MeansMGMT" and
+            (.isDraft | not) and
+            .headRefOid == $sha and
+            ([.labels[].name] | index("hold") | not)' <<<"$pr")
+          if [ "$ok" != "true" ]; then echo "PR #$num skipped (author, draft, hold label or newer commit)"; exit 0; fi
+          gh pr merge "$num" --repo "$REPO" --squash --delete-branch --match-head-commit "$SHA"
