@@ -67,7 +67,7 @@ Read the full policies: [StreamSpend MCP privacy](https://mcp.streamspend.net/pr
 
 ## Support
 
-Questions or problems: contact@meansmgmt.com. More about StreamSpend at [streamspend.net](https://www.streamspend.net) and about MeansMGMT at [meansmgmt.com](https://www.meansmgmt.com).
+Questions or problems: contact@streamspend.net. More about StreamSpend at [streamspend.net](https://www.streamspend.net) and about MeansMGMT at [meansmgmt.com](https://www.meansmgmt.com).
 
 ## License
 
