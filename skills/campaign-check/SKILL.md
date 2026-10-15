@@ -17,6 +17,8 @@ Use the first source that applies, and fill gaps from the next ones.
 
 Never ask the user to connect an app just for the check. The setup card and a screenshot both work.
 
+Never open a browser to read Spotify for Artists, Meta Ads Manager or another ad dashboard for the user, even when a browser tool is available. Those sites do not allow automated access. Ask for a screenshot or an export instead.
+
 ## Facts to collect
 
 For each campaign:
